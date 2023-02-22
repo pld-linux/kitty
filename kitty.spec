@@ -19,6 +19,7 @@ Source1:	https://raw.githubusercontent.com/kovidgoyal/kitty/46c0951751444e4f4994
 # Source1-md5:	702c51cea58e8b0fb8fd67da9da3802a
 Source2:	%{name}.sh
 Source3:	%{name}.fish
+Patch0:		num-workers.patch
 BuildRequires:	appstream-glib
 BuildRequires:	dbus-devel
 BuildRequires:	desktop-file-utils
@@ -151,6 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %set_build_flags
 export CC="%{__cc}"
 export CXX="%{__cxx}"
+export NUM_WORKERS=1
 %{__python3} setup.py linux-package \
     --libdir-name=%{_lib} \
     --prefix=$RPM_BUILD_ROOT%{_prefix} \

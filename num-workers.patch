@@ -1,0 +1,23 @@
+Force 1 num worker:
+- https://github.com/kovidgoyal/kitty/issues/6050
+
+--- kitty-0.27.1/setup.py~	2023-02-22 16:41:43.000000000 +0200
++++ kitty-0.27.1/setup.py	2023-02-22 16:45:34.114098801 +0200
+@@ -573,7 +573,7 @@
+ 
+ def parallel_run(items: List[Command]) -> None:
+     try:
+-        num_workers = max(2, os.cpu_count() or 1)
++        num_workers = int(os.environ.get('NUM_WORKERS', max(2, os.cpu_count() or 1)))
+     except Exception:
+         num_workers = 2
+     items = list(reversed(items))
+@@ -1064,7 +1064,7 @@
+     import compileall
+     import py_compile
+     try:
+-        num_workers = max(1, os.cpu_count() or 1)
++        num_workers = int(os.environ.get('NUM_WORKERS', max(2, os.cpu_count() or 1)))
+     except Exception:
+         num_workers = 1
+     for root, dirs, files in os.walk(base_path):
