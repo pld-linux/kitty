@@ -1,7 +1,10 @@
 #
 # Conditional build:
 %bcond_without	tests		# build without tests
-%bcond_without	doc		# build without docs
+%bcond_with	build_docs	# build docs instead of pre-packaged files
+
+# NOTE:
+# - docs build requires git checkout and (yet) missing sphinxext-opengraph package
 
 Summary:	Cross-platform, fast, feature full, GPU based terminal emulator
 Name:		kitty
@@ -53,11 +56,10 @@ BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRequires:	xorg-lib-libxkbcommon-x11-devel
 BuildRequires:	zlib-devel
-%if %{with docs}
+%if %{with build_docs}
 BuildRequires:	python3dist(sphinx)
 BuildRequires:	python3dist(sphinx-copybutton)
 BuildRequires:	python3dist(sphinx-inline-tabs)
-# Missing in pld
 #BuildRequires:	python3dist(sphinxext-opengraph)
 %endif
 %if %{with tests}
@@ -144,6 +146,9 @@ This package contains the documentation for %{name}.
 # Changing sphinx theme to classic
 sed "s/html_theme = 'furo'/html_theme = 'classic'/" -i docs/conf.py
 
+# Missing in pld
+%{__sed} -i -e '/sphinxext.opengraph/d' docs/conf.py
+
 find -type f -name "*.py" | xargs sed -i \
 	-e 's|%{_bindir}/env python3|%{__python3}|g' \
 	-e 's|%{_bindir}/env python|%{__python3}|g' \
@@ -184,11 +189,9 @@ sed 's|set -l KITTY_INSTALLATION_DIR .*|set -l KITTY_INSTALLATION_DIR "%{_libdir
 # script-without-shebang '__init__.py'
 find $RPM_BUILD_ROOT -type f -name "*.py*" ! -name askpass.py | xargs chmod a-x
 
-%if %{with doc}
 # rpmlint fixes
 rm $RPM_BUILD_ROOT%{_docdir}/%{name}/html/.buildinfo \
 	$RPM_BUILD_ROOT%{_docdir}/%{name}/html/.nojekyll
-%endif
 
 %if %{with tests}
 # Some tests ignores PATH env...
@@ -222,10 +225,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}/logo
 %{_libdir}/%{name}/shell-integration
 %{_libdir}/%{name}/terminfo
-%if %{with doc}
 %{_mandir}/man1/kitty.1*
 %{_mandir}/man5/kitty.conf.5*
-%endif
 
 %files bash-integration
 %defattr(644,root,root,755)
@@ -240,11 +241,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE
 %{_datadir}/terminfo/x/xterm-kitty
 
-%if %{with doc}
 %files doc
 %defattr(644,root,root,755)
-%doc LICENSE
-%doc CONTRIBUTING.md CHANGELOG.rst INSTALL.md
-%{_docdir}/%{name}/html
+%doc CONTRIBUTING.md CHANGELOG.rst INSTALL.md LICENSE
 %dir %{_docdir}/%{name}
-%endif
+%{_docdir}/%{name}/html
