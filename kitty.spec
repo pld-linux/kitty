@@ -209,26 +209,35 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE
 %attr(755,root,root) %{_bindir}/kitten
 %attr(755,root,root) %{_bindir}/kitty
-%{_desktopdir}/*.desktop
-%{_iconsdir}/hicolor/*/*/*.{png,svg}
-%{_libdir}/%{name}/
+%{_desktopdir}/kitty-open.desktop
+%{_desktopdir}/kitty.desktop
+%{_iconsdir}/hicolor/*/*/kitty.{png,svg}
+%{_metainfodir}/kitty.appdata.xml
+%dir %{_libdir}/%{name}
+%{_libdir}/%{name}/*.py
+%{_libdir}/%{name}/__pycache__
+%{_libdir}/%{name}/kittens
+%{_libdir}/%{name}/kitty
+%{_libdir}/%{name}/logo
+%{_libdir}/%{name}/shell-integration
+%{_libdir}/%{name}/terminfo
 %if %{with doc}
-%{_mandir}/man{1,5}/*.{1,5}*
+%{_mandir}/man1/kitty.1*
+%{_mandir}/man5/kitty.conf.5*
 %endif
-%{_metainfodir}/*.xml
 
 %files bash-integration
 %defattr(644,root,root,755)
-/etc/profile.d/%{name}.sh
+/etc/profile.d/kitty.sh
 
 %files fish-integration
 %defattr(644,root,root,755)
-%{fish_compdir}/%{name}.fish
+%{fish_compdir}/kitty.fish
 
 %files terminfo
 %defattr(644,root,root,755)
 %doc LICENSE
-%{_datadir}/terminfo/x/xterm-%{name}
+%{_datadir}/terminfo/x/xterm-kitty
 
 %if %{with doc}
 %files doc
