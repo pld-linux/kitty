@@ -23,6 +23,7 @@ go mod vendor
 tar -caf ~/kitty-vendor.tar.xz vendor
 %endif
 Source4:	%{name}-%{version}-vendor.tar.xz
+# Source4-md5:	f6aac2e7f2b6a58e468a160899d823c2
 Patch0:		num-workers.patch
 Patch1:		go-vendor.patch
 URL:		https://sw.kovidgoyal.net/kitty
