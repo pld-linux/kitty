@@ -10,7 +10,6 @@ Release:	0.1
 # BSD:          docs/_templates/searchbox.html
 # zlib:         glfw/
 License:	GPLv3 and zlib and BSD
-URL:		https://sw.kovidgoyal.net/kitty
 Source0:	https://github.com/kovidgoyal/kitty/releases/download/v%{version}/%{name}-%{version}.tar.xz
 # Source0-md5:	3e24876ca288589dfab398de81b02614
 # Add AppData manifest file
@@ -20,12 +19,14 @@ Source1:	https://raw.githubusercontent.com/kovidgoyal/kitty/46c0951751444e4f4994
 Source2:	%{name}.sh
 Source3:	%{name}.fish
 Patch0:		num-workers.patch
+URL:		https://sw.kovidgoyal.net/kitty
 BuildRequires:	appstream-glib
 BuildRequires:	dbus-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	fontconfig-devel
 BuildRequires:	gcc
 BuildRequires:	gnupg2
+BuildRequires:	golang >= 1.20
 BuildRequires:	harfbuzz-devel >= 2.2
 BuildRequires:	lcms2-devel
 BuildRequires:	libcanberra-devel
