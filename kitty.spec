@@ -167,6 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 export CC="%{__cc}"
 export CXX="%{__cxx}"
 export NUM_WORKERS=1
+# NOTE: setup.py is not regular setuptools setup.py
 %{__python3} setup.py linux-package \
     --libdir-name=%{_lib} \
     --prefix=$RPM_BUILD_ROOT%{_prefix} \
