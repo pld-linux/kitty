@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	tests		# build without tests
-%bcond_without	docs		# build without docs
+%bcond_without	doc		# build without docs
 
 Summary:	Cross-platform, fast, feature full, GPU based terminal emulator
 Name:		kitty
