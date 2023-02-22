@@ -207,7 +207,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc LICENSE
-%attr(755,root,root) %{_bindir}/%{name}
+%attr(755,root,root) %{_bindir}/kitten
+%attr(755,root,root) %{_bindir}/kitty
 %{_desktopdir}/*.desktop
 %{_iconsdir}/hicolor/*/*/*.{png,svg}
 %{_libdir}/%{name}/
