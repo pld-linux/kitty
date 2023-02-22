@@ -17,7 +17,7 @@ Source0:	https://github.com/kovidgoyal/kitty/releases/download/v%{version}/%{nam
 # Source0-md5:	3e24876ca288589dfab398de81b02614
 # Add AppData manifest file
 # * https://github.com/kovidgoyal/kitty/pull/2088
-Source1:	%{name}.appdata.xml
+Source1:	%{name}.metainfo.xml
 Source2:	%{name}.sh
 Source3:	%{name}.fish
 %if 0
@@ -183,8 +183,7 @@ export NUM_WORKERS=1
     --shell-integration "disabled" \
     %{nil}
 
-install -Dp %{SOURCE1} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.appdata.xml
-
+install -Dp %{SOURCE1} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.metainfo.xml
 install -Dp %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/profile.d/%{name}.sh
 install -Dp %{SOURCE3} $RPM_BUILD_ROOT%{fish_compdir}/%{name}.fish
 
@@ -223,7 +222,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kitty-open.desktop
 %{_desktopdir}/kitty.desktop
 %{_iconsdir}/hicolor/*/*/kitty.{png,svg}
-%{_metainfodir}/kitty.appdata.xml
+%{_metainfodir}/kitty.metainfo.xml
 %dir %{_libdir}/%{name}
 %{_libdir}/%{name}/*.py
 %{_libdir}/%{name}/__pycache__
