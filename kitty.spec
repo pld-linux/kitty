@@ -163,6 +163,12 @@ export CC="%{__cc}"
 export CXX="%{__cxx}"
 export NUM_WORKERS=1
 %{__python3} setup.py linux-package \
+    --libdir-name=%{_lib} \
+    --prefix=$RPM_BUILD_ROOT%{_prefix} \
+    --update-check-interval=0 \
+    --verbose \
+    --debug \
+    --shell-integration "disabled" \
     %{nil}
 
 install -Dp %{SOURCE1} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.appdata.xml
