@@ -6,7 +6,7 @@
 Summary:	Cross-platform, fast, feature full, GPU based terminal emulator
 Name:		kitty
 Version:	0.27.1
-Release:	0.1
+Release:	1
 # BSD:          docs/_templates/searchbox.html
 # zlib:         glfw/
 License:	GPLv3 and zlib and BSD
@@ -162,12 +162,6 @@ export CC="%{__cc}"
 export CXX="%{__cxx}"
 export NUM_WORKERS=1
 %{__python3} setup.py linux-package \
-    --libdir-name=%{_lib} \
-    --prefix=$RPM_BUILD_ROOT%{_prefix} \
-    --update-check-interval=0 \
-    --verbose \
-    --debug \
-    --shell-integration "disabled" \
     %{nil}
 
 install -Dp %{SOURCE1} $RPM_BUILD_ROOT%{_metainfodir}/%{name}.appdata.xml
