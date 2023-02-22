@@ -77,6 +77,7 @@ Requires:	%{name}-terminfo = %{version}-%{release}
 # "kittens" functions install separately
 Recommends:	python3-pygments
 Suggests:	ImageMagick
+ExclusiveArch:	%go_arches
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define	specflags	-Wno-array-bounds
