@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests		# build without tests
+%bcond_with	tests		# build without tests
 %bcond_with	build_docs	# build docs instead of pre-packaged files
 
 # NOTE:
