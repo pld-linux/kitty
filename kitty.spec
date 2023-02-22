@@ -44,6 +44,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	python3-devel >= 1:3.8
 BuildRequires:	python3dist(setuptools)
 BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 2.023
 BuildRequires:	wayland-devel
 BuildRequires:	wayland-protocols
 BuildRequires:	xorg-lib-libXcursor-devel
