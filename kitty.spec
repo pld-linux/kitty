@@ -14,7 +14,7 @@ Source0:	https://github.com/kovidgoyal/kitty/releases/download/v%{version}/%{nam
 # Source0-md5:	3e24876ca288589dfab398de81b02614
 # Add AppData manifest file
 # * https://github.com/kovidgoyal/kitty/pull/2088
-Source1:	kitty.appdata.xml
+Source1:	%{name}.appdata.xml
 Source2:	%{name}.sh
 Source3:	%{name}.fish
 %if 0
