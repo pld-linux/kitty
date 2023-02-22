@@ -18,7 +18,13 @@ Source1:	https://raw.githubusercontent.com/kovidgoyal/kitty/46c0951751444e4f4994
 # Source1-md5:	702c51cea58e8b0fb8fd67da9da3802a
 Source2:	%{name}.sh
 Source3:	%{name}.fish
+%if 0
+go mod vendor
+tar -caf ~/kitty-vendor.tar.xz vendor
+%endif
+Source4:	%{name}-%{version}-vendor.tar.xz
 Patch0:		num-workers.patch
+Patch1:		go-vendor.patch
 URL:		https://sw.kovidgoyal.net/kitty
 BuildRequires:	appstream-glib
 BuildRequires:	dbus-devel
@@ -131,7 +137,7 @@ Summary:	Documentation for %{name}
 This package contains the documentation for %{name}.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -a4
 
 # Changing sphinx theme to classic
 sed "s/html_theme = 'furo'/html_theme = 'classic'/" -i docs/conf.py
