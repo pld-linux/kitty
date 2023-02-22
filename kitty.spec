@@ -61,6 +61,7 @@ BuildRequires:	python3dist(sphinx)
 BuildRequires:	python3dist(sphinx-copybutton)
 BuildRequires:	python3dist(sphinx-inline-tabs)
 #BuildRequires:	python3dist(sphinxext-opengraph)
+BuildRequires:	sphinx-pdg
 %endif
 %if %{with tests}
 BuildRequires:	/usr/bin/getent
@@ -160,6 +161,12 @@ sed -e "s/f.endswith('\.so')/f.endswith('\.so') or f.endswith('\.py')/g" -i setu
 
 # script-without-shebang '__init__.py'
 find -type f -name "*.py*" | xargs chmod a-x
+
+%build
+%if %{with build_docs}
+%{__python3} setup.py build
+%{__make} -C docs man html
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
