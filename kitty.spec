@@ -172,6 +172,7 @@ rm -rf $RPM_BUILD_ROOT
 %set_build_flags
 export CC="%{__cc}"
 export CXX="%{__cxx}"
+export GOCACHE=%go_cachedir
 export NUM_WORKERS=1
 # NOTE: setup.py is not regular setuptools setup.py
 %{__python3} setup.py linux-package \
