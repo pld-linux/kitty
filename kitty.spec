@@ -227,15 +227,60 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/*/kitty.{png,svg}
 %{_metainfodir}/kitty.metainfo.xml
 %dir %{_libdir}/%{name}
-%{_libdir}/%{name}/*.py
-%{_libdir}/%{name}/__pycache__
-%{_libdir}/%{name}/kittens
-%{_libdir}/%{name}/kitty
 %{_libdir}/%{name}/logo
 %{_libdir}/%{name}/shell-integration
 %{_libdir}/%{name}/terminfo
 %{_mandir}/man1/kitty.1*
 %{_mandir}/man5/kitty.conf.5*
+
+# verbose files to specify attr for shared libs
+%{_libdir}/%{name}/*.py
+%{_libdir}/%{name}/__pycache__
+%dir %{_libdir}/%{name}/kittens
+%{_libdir}/%{name}/kittens/*.py
+%{_libdir}/%{name}/kittens/__pycache__
+%dir %{_libdir}/%{name}/kittens/choose
+%{_libdir}/%{name}/kittens/choose/*.py
+%{_libdir}/%{name}/kittens/choose/__pycache__
+%dir %{_libdir}/%{name}/kittens/diff
+%{_libdir}/%{name}/kittens/diff/*.py
+%{_libdir}/%{name}/kittens/diff/__pycache__
+%{_libdir}/%{name}/kittens/diff/options
+%dir %{_libdir}/%{name}/kittens/transfer
+%{_libdir}/%{name}/kittens/transfer/*.py
+%{_libdir}/%{name}/kittens/transfer/__pycache__
+%dir %{_libdir}/%{name}/kittens/unicode_input
+%{_libdir}/%{name}/kittens/unicode_input/*.py
+%{_libdir}/%{name}/kittens/unicode_input/__pycache__
+%attr(755,root,root) %{_libdir}/%{name}/kittens/*/*.so
+%{_libdir}/%{name}/kittens/ask
+%{_libdir}/%{name}/kittens/broadcast
+%{_libdir}/%{name}/kittens/clipboard
+%{_libdir}/%{name}/kittens/hints
+%{_libdir}/%{name}/kittens/hyperlinked_grep
+%{_libdir}/%{name}/kittens/icat
+%{_libdir}/%{name}/kittens/mouse_demo
+%{_libdir}/%{name}/kittens/panel
+%{_libdir}/%{name}/kittens/query_terminal
+%{_libdir}/%{name}/kittens/remote_file
+%{_libdir}/%{name}/kittens/resize_window
+%{_libdir}/%{name}/kittens/show_error
+%{_libdir}/%{name}/kittens/show_key
+%{_libdir}/%{name}/kittens/ssh
+%{_libdir}/%{name}/kittens/themes
+%{_libdir}/%{name}/kittens/tui
+
+%dir %{_libdir}/%{name}/kitty
+%{_libdir}/%{name}/kitty/__pycache__
+%{_libdir}/%{name}/kitty/*.py
+%{_libdir}/%{name}/kitty/*.glsl
+%{_libdir}/%{name}/kitty/conf
+%{_libdir}/%{name}/kitty/fonts
+%{_libdir}/%{name}/kitty/launcher
+%{_libdir}/%{name}/kitty/layout
+%{_libdir}/%{name}/kitty/options
+%{_libdir}/%{name}/kitty/rc
+%attr(755,root,root) %{_libdir}/%{name}/kitty/*.so
 
 %files bash-integration
 %defattr(644,root,root,755)
