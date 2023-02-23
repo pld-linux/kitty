@@ -174,6 +174,8 @@ export CC="%{__cc}"
 export CXX="%{__cxx}"
 export GOCACHE=%go_cachedir
 export NUM_WORKERS=1
+# unset PWD for https://github.com/kovidgoyal/kitty/issues/6051
+unset PWD
 # NOTE: setup.py is not regular setuptools setup.py
 %{__python3} setup.py linux-package \
     --libdir-name=%{_lib} \
