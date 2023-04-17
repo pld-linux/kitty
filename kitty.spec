@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_with	tests		# build without tests
 %bcond_with	build_docs	# build docs instead of pre-packaged files
+%bcond_with	vendor		# create vendor tarba
 
 # NOTE:
 # - docs build requires git checkout and (yet) missing sphinxext-opengraph package
@@ -20,12 +21,10 @@ Source0:	https://github.com/kovidgoyal/kitty/releases/download/v%{version}/%{nam
 Source1:	%{name}.metainfo.xml
 Source2:	%{name}.sh
 Source3:	%{name}.fish
-%if 0
-go mod vendor
-tar -caf ~/kitty-vendor.tar.xz vendor
-%endif
+%if %{without vendor}
 Source4:	%{name}-%{version}-vendor.tar.xz
 # Source4-md5:	f6aac2e7f2b6a58e468a160899d823c2
+%endif
 Patch0:		num-workers.patch
 URL:		https://sw.kovidgoyal.net/kitty
 BuildRequires:	appstream-glib
@@ -141,7 +140,13 @@ Summary:	Documentation for %{name}
 This package contains the documentation for %{name}.
 
 %prep
-%autosetup -p1 -a4
+%autosetup -p1 %{?without_vendor:-a4}
+
+%if %{with vendor}
+go mod vendor
+tar -caf %{_sourcedir}/%{name}-%{version}-vendor.tar.xz vendor
+exit 1
+%endif
 
 # Changing sphinx theme to classic
 sed "s/html_theme = 'furo'/html_theme = 'classic'/" -i docs/conf.py
