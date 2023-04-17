@@ -9,13 +9,13 @@
 
 Summary:	Cross-platform, fast, feature full, GPU based terminal emulator
 Name:		kitty
-Version:	0.27.1
+Version:	0.28.0
 Release:	1
 # BSD:          docs/_templates/searchbox.html
 # zlib:         glfw/
 License:	GPLv3 and zlib and BSD
 Source0:	https://github.com/kovidgoyal/kitty/releases/download/v%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	3e24876ca288589dfab398de81b02614
+# Source0-md5:	5b458f1e594f7b5668b0e728957c221d
 # Add AppData manifest file
 # * https://github.com/kovidgoyal/kitty/pull/2088
 Source1:	%{name}.metainfo.xml
@@ -23,7 +23,7 @@ Source2:	%{name}.sh
 Source3:	%{name}.fish
 %if %{without vendor}
 Source4:	%{name}-%{version}-vendor.tar.xz
-# Source4-md5:	f6aac2e7f2b6a58e468a160899d823c2
+# Source4-md5:	c509736ee0f2073aa504124e6efa1be0
 %endif
 Patch0:		num-workers.patch
 URL:		https://sw.kovidgoyal.net/kitty
