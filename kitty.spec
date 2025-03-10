@@ -10,7 +10,7 @@
 Summary:	Cross-platform, fast, feature full, GPU based terminal emulator
 Name:		kitty
 Version:	0.28.0
-Release:	1
+Release:	2
 # BSD:          docs/_templates/searchbox.html
 # zlib:         glfw/
 License:	GPLv3 and zlib and BSD
